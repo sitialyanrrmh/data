@@ -5,7 +5,7 @@ import pandas as pd
 
 # Fungsi untuk memuat data dari file di komputer (otomatis tanpa upload)
 def load_data(file_path):
-    hour_df = pd.read_csv('main.csv')
+    hour_df = pd.read_csv('https://github.com/sitialyanrrmh/project_analisis_data/blob/5f4e6ceb29ddfb540d650f0df4091c40041649a4/dashboard/main.csv')
     
     # Pilih kolom yang diinginkan untuk korelasi
     variables_x = ['temp', 'atemp', 'hum', 'windspeed']  # Sesuaikan nama kolom dengan dataset
@@ -88,7 +88,7 @@ def dashboard(hour_df, correlation_matrix):
         plot_correlation_heatmap(correlation_matrix)
 
 # Load data and run dashboard
-file_path = 'main.csv'  # Sesuaikan dengan path file Anda
+file_path = 'https://github.com/sitialyanrrmh/project_analisis_data/blob/5f4e6ceb29ddfb540d650f0df4091c40041649a4/dashboard/main.csv'  # Sesuaikan dengan path file Anda
 hour_df, correlation_matrix = load_data(file_path)
 
 if hour_df is not None:
