@@ -88,7 +88,7 @@ def dashboard(hour_df, correlation_matrix):
         plot_correlation_heatmap(correlation_matrix)
 
 # Load data and run dashboard
-file_path = 'data/hour.csv'  # Sesuaikan dengan path file Anda
+file_path = 'main.csv'  # Sesuaikan dengan path file Anda
 hour_df, correlation_matrix = load_data(file_path)
 
 if hour_df is not None:
