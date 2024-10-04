@@ -4,7 +4,7 @@ import seaborn as sns
 import pandas as pd
 
 # Load data from the CSV files directly
-file_path = 'https://drive.google.com/file/d/1KdIKsoQ2BNyNWeLzBfkKg0uU1eUPCyu8/view?usp=drive_link'
+file_path = 'https://raw.githubusercontent.com/sitialyanrrmh/project_analisis_data/5f4e6ceb29ddfb540d650f0df4091c40041649a4/dashboard/day.csv'
 file_path2 = 'https://raw.githubusercontent.com/sitialyanrrmh/project_analisis_data/5f4e6ceb29ddfb540d650f0df4091c40041649a4/dashboard/hour.csv'
 day_df = pd.read_csv(file_path)
 hour_df = pd.read_csv(file_path2)
