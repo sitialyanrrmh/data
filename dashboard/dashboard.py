@@ -5,9 +5,8 @@ import pandas as pd
 
 # Load data from the CSV files directly
 file_path = 'https://raw.githubusercontent.com/sitialyanrrmh/project_analisis_data/5f4e6ceb29ddfb540d650f0df4091c40041649a4/dashboard/day.csv'
-file_path2 = 'https://raw.githubusercontent.com/sitialyanrrmh/project_analisis_data/5f4e6ceb29ddfb540d650f0df4091c40041649a4/dashboard/hour.csv'
 day_df = pd.read_csv(file_path)
-hour_df = pd.read_csv(file_path2)
+
 
 # Check if required columns are present in both datasets
 required_columns_day = ['casual', 'registered', 'cnt', 'weekday', 'mnth', 'season']
@@ -117,7 +116,7 @@ else:
         variables_y = ['casual', 'registered', 'cnt']
 
         # Menghitung korelasi hanya antara variabel-variabel yang diinginkan
-        correlation_matrix = hour_df[variables_y + variables_x].corr().loc[variables_y, variables_x]
+        correlation_matrix = day_df[variables_y + variables_x].corr().loc[variables_y, variables_x]
         
         fig, ax = plt.subplots(figsize=(8, 6))
         sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm', vmin=-1, vmax=1, ax=ax)
