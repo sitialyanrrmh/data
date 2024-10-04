@@ -14,8 +14,9 @@ Windows
 Linux
 source venv/bin/activate
 ```
+```
 pip nstall -r requirements.txt
-
+```
 ## Run steamlit app
 
 ```
