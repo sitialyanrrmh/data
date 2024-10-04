@@ -1,26 +1,23 @@
-"# project_analisis_data" 
 # Dicoding Collection Bike Sharing Dashboard ✨
 
-## Setup Environment - Anaconda
+## Setup 
+
+git clone https://github.com/sitialyanrrmh/project_analisis_data.git
+cd bike-sharing-streamlit
+virtualenv venv
 
 ```
-conda create --name main-ds python=3.9
-conda activate main-ds
-pip install -r requirements.txt
+Windows
+.\venv\Scripts\activate
 ```
-
-## Setup Environment - Shell/Terminal
-
 ```
-mkdir proyek_analisis_data
-cd proyek_analisis_data
-pipenv install
-pipenv shell
-pip install -r requirements.txt
+Linux
+source venv/bin/activate
 ```
+pip nstall -r requirements.txt
 
 ## Run steamlit app
 
 ```
-streamlit run dashboard.py
+streamlit run dashboard/dashboard.py
 ```
