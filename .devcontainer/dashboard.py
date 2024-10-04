@@ -72,6 +72,10 @@ else:
     month_average.columns = ['month', 'avg_casual', 'avg_registered', 'avg_cnt']
     month_average[['avg_casual', 'avg_registered', 'avg_cnt']] = month_average[['avg_casual', 'avg_registered', 'avg_cnt']].astype(int)
 
+    # Define the month names for x-axis labels
+    months = ['January', 'February', 'March', 'April', 'May', 'June', 
+              'July', 'August', 'September', 'October', 'November', 'December']
+
     # Function to plot average renters per month
     def plot_average_renters_per_month():
         fig, ax = plt.subplots(figsize=(12, 6))
