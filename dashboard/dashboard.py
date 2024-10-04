@@ -27,13 +27,22 @@ else:
     # Function to plot average renters per day
     def plot_average_renters_per_day():
         fig, ax = plt.subplots(figsize=(10, 6))
-        ax.plot(weekday_average['weekday'], weekday_average['avg_cnt'], marker='o', label='Avg Total', color='green')
-        ax.set_title('Average Total Renters per Week')
-        ax.set_xlabel('Day')
-        ax.set_ylabel('Average Total Renters')
+        ax.plot(weekday_average['weekday'], weekday_average['avg_cnt'], marker='o', label='Avg Total Renters', color='green')
+        ax.set_title('Average Total Renters per Week', fontsize=16)
+        ax.set_xlabel('Day', fontsize=12)
+        ax.set_ylabel('Average Total Renters', fontsize=12)
         ax.legend()
         ax.grid(True)
         plt.xticks(rotation=45)
+        
+        # Annotate the points with average total renters
+        for i in range(len(weekday_average)):
+            ax.annotate(weekday_average['avg_cnt'].iloc[i], 
+                        (weekday_average['weekday'].iloc[i], weekday_average['avg_cnt'].iloc[i]),
+                        textcoords="offset points", 
+                        xytext=(0,5), 
+                        ha='center')
+
         st.pyplot(fig)
 
     # Average renters per season
@@ -46,10 +55,19 @@ else:
     # Function to plot average renters per season
     def plot_average_renters_per_season():
         fig, ax = plt.subplots(figsize=(10, 6))
-        sns.barplot(x='season', y='avg_cnt', data=season_average, ax=ax)
-        ax.set_title('Average Total Renters per Season')
-        ax.set_xlabel('Season')
-        ax.set_ylabel('Average Total Renters')
+        sns.barplot(x='season', y='avg_cnt', data=season_average, ax=ax, palette='viridis')
+        ax.set_title('Average Total Renters per Season', fontsize=16)
+        ax.set_xlabel('Season', fontsize=12)
+        ax.set_ylabel('Average Total Renters', fontsize=12)
+
+        # Annotate the bars with average total renters
+        for p in ax.patches:
+            ax.annotate(f'{int(p.get_height())}', 
+                        (p.get_x() + p.get_width() / 2., p.get_height()), 
+                        ha='center', va='bottom', 
+                        fontsize=10, color='black', 
+                        rotation=0)
+
         st.pyplot(fig)
 
     # Average renters per month
@@ -64,14 +82,23 @@ else:
         fig, ax = plt.subplots(figsize=(12, 6))
         months = ['January', 'February', 'March', 'April', 'May', 'June', 
                   'July', 'August', 'September', 'October', 'November', 'December']
-        ax.plot(month_average['month'], month_average['avg_cnt'], marker='o', label='Avg Total Renters (cnt)')
-        ax.set_title('Average Renters per Month')
-        ax.set_xlabel('Month')
-        ax.set_ylabel('Average Renters')
+        ax.plot(month_average['month'], month_average['avg_cnt'], marker='o', label='Avg Total Renters (cnt)', color='blue')
+        ax.set_title('Average Renters per Month', fontsize=16)
+        ax.set_xlabel('Month', fontsize=12)
+        ax.set_ylabel('Average Renters', fontsize=12)
         ax.set_xticks(month_average['month'])
         ax.set_xticklabels(months, rotation=45)
         ax.grid(True)
         ax.legend()
+
+        # Annotate the points with average total renters
+        for i in range(len(month_average)):
+            ax.annotate(month_average['avg_cnt'].iloc[i], 
+                        (month_average['month'].iloc[i], month_average['avg_cnt'].iloc[i]),
+                        textcoords="offset points", 
+                        xytext=(0,5), 
+                        ha='center')
+
         st.pyplot(fig)
 
     # Heatmap of correlation
@@ -79,7 +106,7 @@ else:
         correlation_matrix = day_df[['casual', 'registered', 'cnt', 'temp', 'hum']].corr()
         fig, ax = plt.subplots(figsize=(8, 6))
         sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm', vmin=-1, vmax=1, ax=ax)
-        ax.set_title('Correlation Heatmap of Renters and Weather Variables')
+        ax.set_title('Correlation Heatmap of Renters and Weather Variables', fontsize=16)
         st.pyplot(fig)
 
     # Main function to layout the dashboard
