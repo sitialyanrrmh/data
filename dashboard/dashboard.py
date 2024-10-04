@@ -3,16 +3,20 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import pandas as pd
 
-# Load data from the CSV file directly
+# Load data from the CSV files directly
 file_path = 'https://raw.githubusercontent.com/sitialyanrrmh/project_analisis_data/5f4e6ceb29ddfb540d650f0df4091c40041649a4/dashboard/day.csv'
 file_path2 = 'https://raw.githubusercontent.com/sitialyanrrmh/project_analisis_data/5f4e6ceb29ddfb540d650f0df4091c40041649a4/dashboard/hour.csv'
 day_df = pd.read_csv(file_path)
 hour_df = pd.read_csv(file_path2)
 
-# Check if required columns are present
-required_columns = ['casual', 'registered', 'cnt', 'weekday', 'mnth', 'season', 'temperatur', 'temperatur_feels', 'humidity', 'windspeed2']
-if not all(col in day_df.columns for col in required_columns):
-    st.error("Missing one or more required columns in the dataset.")
+# Check if required columns are present in both datasets
+required_columns_day = ['casual', 'registered', 'cnt', 'weekday', 'mnth', 'season']
+required_columns_hour = ['temp', 'atemp', 'hum', 'windspeed', 'casual', 'registered', 'cnt']
+
+if not all(col in day_df.columns for col in required_columns_day):
+    st.error("Missing one or more required columns in the day dataset.")
+if not all(col in hour_df.columns for col in required_columns_hour):
+    st.error("Missing one or more required columns in the hour dataset.")
 else:
     # Average renters per day
     weekday_total = day_df.groupby('weekday')[['casual', 'registered', 'cnt']].sum().reset_index()
@@ -35,7 +39,6 @@ else:
         ax.set_ylabel('Average Total Renters', fontsize=12)
         ax.legend()
         ax.grid(True)
-        plt.xticks(rotation=45)
         
         # Annotate the points with average total renters
         for i in range(len(weekday_average)):
@@ -45,6 +48,10 @@ else:
                         xytext=(0,5), 
                         ha='center')
 
+        # Menyesuaikan sumbu x agar tidak terpotong
+        plt.xticks(rotation=45, ha='right')
+        plt.tight_layout()  # Menghindari label terpotong
+        
         st.pyplot(fig)
 
     # Average renters per season
@@ -110,7 +117,7 @@ else:
         variables_y = ['casual', 'registered', 'cnt']
 
         # Menghitung korelasi hanya antara variabel-variabel yang diinginkan
-        correlation_matrix = day_df[variables_y + variables_x].corr().loc[variables_y, variables_x]
+        correlation_matrix = hour_df[variables_y + variables_x].corr().loc[variables_y, variables_x]
         
         fig, ax = plt.subplots(figsize=(8, 6))
         sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm', vmin=-1, vmax=1, ax=ax)
