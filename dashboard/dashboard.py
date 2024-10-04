@@ -4,18 +4,15 @@ import seaborn as sns
 import pandas as pd
 
 # Load data from the CSV files directly
-file_path = 'https://raw.githubusercontent.com/sitialyanrrmh/project_analisis_data/5f4e6ceb29ddfb540d650f0df4091c40041649a4/dashboard/day.csv'
+file_path = 'https://raw.githubusercontent.com/sitialyanrrmh/project_analisis_data/5f4e6ceb29ddfb540d650f0df4091c40041649a4/dashboard/hour.csv'
 day_df = pd.read_csv(file_path)
 
 
 # Check if required columns are present in both datasets
 required_columns_day = ['casual', 'registered', 'cnt', 'weekday', 'mnth', 'season']
-required_columns_hour = ['temp', 'atemp', 'hum', 'windspeed', 'casual', 'registered', 'cnt']
 
 if not all(col in day_df.columns for col in required_columns_day):
     st.error("Missing one or more required columns in the day dataset.")
-if not all(col in hour_df.columns for col in required_columns_hour):
-    st.error("Missing one or more required columns in the hour dataset.")
 else:
     # Average renters per day
     weekday_total = day_df.groupby('weekday')[['casual', 'registered', 'cnt']].sum().reset_index()
