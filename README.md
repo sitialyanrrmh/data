@@ -1,11 +1,11 @@
-# Dicoding Collection Bike Sharing Dashboard ✨
+# Bike Sharing Dashboard 
 
 ## Setup 
-
+```
 git clone https://github.com/sitialyanrrmh/project_analisis_data.git
 cd bike-sharing-streamlit
 virtualenv venv
-
+```
 ```
 Windows
 .\venv\Scripts\activate
